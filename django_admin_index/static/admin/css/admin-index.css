@@ -11,7 +11,6 @@
   top: 49px;
   z-index: 1000000;
   display: block;
-  background-color: #417690;
   padding: 0 40px;
   cursor: pointer;
 }
@@ -26,13 +25,13 @@
 .dropdown-menu .dropdown-menu__item.dropdown-menu__item--active,
 .dropdown-menu .dropdown-menu__item:link.dropdown-menu__item--active,
 .dropdown-menu .dropdown-menu__item:visited.dropdown-menu__item--active {
-  background-color: #79aec8;
+
   text-decoration: underline;
 }
 .dropdown-menu .dropdown-menu__item:hover,
 .dropdown-menu .dropdown-menu__item:link:hover,
 .dropdown-menu .dropdown-menu__item:visited:hover {
-  background-color: #79aec8;
+
 }
 .dropdown-menu .dropdown-menu__item:hover .dropdown-menu__drop,
 .dropdown-menu .dropdown-menu__item:link:hover .dropdown-menu__drop,
@@ -58,12 +57,11 @@
 .dropdown-menu .dropdown-menu__link:hover,
 .dropdown-menu .dropdown-menu__link:link:hover,
 .dropdown-menu .dropdown-menu__link:visited:hover {
-  background-color: #79aec8;
+
 }
 .dropdown-menu .dropdown-menu__link.dropdown-menu__link--active,
 .dropdown-menu .dropdown-menu__link:link.dropdown-menu__link--active,
 .dropdown-menu .dropdown-menu__link:visited.dropdown-menu__link--active {
-  background-color: #79aec8;
   text-decoration: underline;
 }
 
