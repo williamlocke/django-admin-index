@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.conf import settings as django_settings
 
 
@@ -39,6 +37,14 @@ class Settings:
         :return: A `dict` with settings.
         """
         return {k: getattr(self, k) for k in dir(self) if k.upper() == k}
+
+    @property
+    def DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION(self):
+        return getattr(
+            django_settings,
+            "ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION",
+            "django_admin_index.utils.should_display_dropdown_menu",
+        )
 
 
 settings = Settings()

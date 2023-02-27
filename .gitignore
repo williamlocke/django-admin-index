@@ -21,11 +21,13 @@ Documentation/
 .pydevproject
 .idea/
 .coverage
+reports/
 .ve*
 cover/
 .vagrant/
 *.sqlite3
 .cache/
+.parcel-cache/
 htmlcov/
 coverage.xml
 env/
@@ -33,3 +35,4 @@ env/
 .eggs/
 node_modules/
 django_admin_index/static/admin/css/admin-index.js
+django_admin_index/static/admin/css/admin-index.js.map

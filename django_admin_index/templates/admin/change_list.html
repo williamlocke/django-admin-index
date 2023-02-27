@@ -1,43 +1,27 @@
-{% extends "admin/base_site.html" %}
-{% load i18n admin_urls static admin_list %}
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static django_admin_index %}
 
-{% block extrastyle %}
-  {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}">
-  {% if cl.formset %}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
-  {% endif %}
-  {% if cl.formset or action_form %}
-    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
-  {% endif %}
-  {{ media.css }}
-  {% if not actions_on_top and not actions_on_bottom %}
-    <style>
-      #changelist table thead th:first-child {width: inherit}
-    </style>
-  {% endif %}
-{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/admin-index.css" %}">{% endblock %}
 
-{% block extrahead %}
-{{ block.super }}
-{{ media.js }}
-{% endblock %}
-
-{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+{% block nav-global %}{% include "django_admin_index/includes/app_list.html" %}{% endblock nav-global %}
 
 {% if not is_popup %}
 {% block breadcrumbs %}
+{% admin_index_settings as admin_index_settings %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 {# NOTE: Remove app groups if needed #}
 {% if not admin_index_settings.HIDE_APP_INDEX_PAGES %}
-    &rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+&rsaquo;
+<a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
 {% endif %}
 {% block breadcrumbs_pre_changelist %}{% endblock %}
 &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
 </div>
 {% endblock %}
 {% endif %}
+<<<<<<< HEAD
 
 {% block coltype %}flex{% endblock %}
 
@@ -96,3 +80,5 @@
     </div>
   </div>
 {% endblock %}
+=======
+>>>>>>> fb8da8289574031b38213b2625f0e4212b826dc1
