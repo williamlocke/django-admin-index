@@ -9,8 +9,6 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-from __future__ import absolute_import, unicode_literals
-
 import os
 import sys
 
@@ -28,7 +26,7 @@ SECRET_KEY = "u($kbs9$irs0)436gbo9%!b&#zyd&70tx!n7!i&fl6qun@z1_l"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -53,9 +51,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-# For Django 1.9 and older, MIDDLEWARE_CLASSES is used instead of MIDDLEWARE
-# See: https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-MIDDLEWARE_CLASSES
-MIDDLEWARE_CLASSES = MIDDLEWARE
 
 ROOT_URLCONF = "tests.proj.urls"
 
@@ -85,13 +80,19 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        "OPTIONS": {"timeout": 1000,},
+        "OPTIONS": {
+            "timeout": 1000,
+        },
     }
 }
 
 CACHES = {
-    "default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache",},
-    "dummy": {"BACKEND": "django.core.cache.backends.dummy.DummyCache",},
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },
+    "dummy": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    },
 }
 
 # Password validation
@@ -103,9 +104,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
@@ -127,3 +134,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = "/static/"
+
+try:
+    import debug_toolbar  # noqa
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+    INTERNAL_IPS = ["127.0.0.1"]

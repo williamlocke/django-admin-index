@@ -1,5 +1,8 @@
-{% extends "admin/base_site.html" %}
-{% load i18n l10n admin_urls static %}
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load i18n admin_urls static django_admin_index %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/admin-index.css" %}">{% endblock %}
 
 {% block extrahead %}
     {# NOTE: Switched these 2 variables around to allow overrides #}
@@ -8,9 +11,10 @@
     <script type="text/javascript" src="{% static 'admin/js/cancel.js' %}"></script>
 {% endblock %}
 
-{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation delete-selected-confirmation{% endblock %}
+{% block nav-global %}{% include "django_admin_index/includes/app_list.html" %}{% endblock nav-global %}
 
 {% block breadcrumbs %}
+{% admin_index_settings as admin_index_settings %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 {# NOTE: Remove app groups if needed #}
@@ -22,6 +26,7 @@
 &rsaquo; {% trans 'Delete multiple objects' %}
 </div>
 {% endblock %}
+<<<<<<< HEAD
 
 {% block content %}
 {% if perms_lacking %}
@@ -58,3 +63,5 @@
     </form>
 {% endif %}
 {% endblock %}
+=======
+>>>>>>> fb8da8289574031b38213b2625f0e4212b826dc1
